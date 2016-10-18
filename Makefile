@@ -67,17 +67,17 @@ deps_install: deps install_janus_gateway_headers install_jansson install_glib
 JANUS_GATEWAY_DIR=deps/janus-gateway-$(V_JANUS_GATEWAY)
 install_janus_gateway_headers:
 	@echo "==== Installing Janus Gateway $(V_JANUS_GATEWAY) headers ===="
-	cd $(JANUS_GATEWAY_DIR) && $(CP) {.,plugins}/*.h $(INSTALL_HEADERDIR)
+	cd $(JANUS_GATEWAY_DIR) && $(CP) *.h $(INSTALL_HEADERDIR) && $(CP) plugins/*.h $(INSTALL_HEADERDIR)
 	@echo "==== Successfully install Janus Gateway $(V_JANUS_GATEWAY) headers ===="
 
-install_jansson:
+install_jansson: jansson
 	@echo "==== Installing Jansson $(V_JANSSON) ===="
-	cd $(JANSSON_DIR) && sudo $(MAKE) install
+	cd $(JANSSON_DIR) && $(MAKE) install
 	@echo "==== Successfully install Jansson $(V_JANSSON) ===="
 
-install_glib:
+install_glib: glib
 	@echo "==== Installing Glib $(V_GLIB) ===="
-	cd $(GLIB_DIR) && sudo $(MAKE) install
+	cd $(GLIB_DIR) && $(MAKE) install
 	@echo "==== Successfully install Glib $(V_GLIB) ===="
 
 #################################### deps build #################################
