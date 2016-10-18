@@ -45,9 +45,9 @@ CFLAGS=-std=c99 -fpic -I. -I$(PREFIX)/include `pkg-config --cflags glib-2.0 jans
 default all: unix_dgram
     @echo "==== Building Janus Plugin ===="
     ifeq (linux, $(PLAT))
-        $(CC) -shared -o $(PLUGIN_NAME).so unix_dgram.o -lpthread `pkg-config --libs glib-2.0 jansson`
+    $(CC) -shared -o $(PLUGIN_NAME).so unix_dgram.o -lpthread `pkg-config --libs glib-2.0 jansson`
     else
-        $(CC) -shared -dynamiclib -undefined suppress -flat_namespace -o $(PLUGIN_NAME).0.dylib unix_dgram.o -lpthread `pkg-config --libs glib-2.0 jansson`
+    $(CC) -shared -dynamiclib -undefined suppress -flat_namespace -o $(PLUGIN_NAME).0.dylib unix_dgram.o -lpthread `pkg-config --libs glib-2.0 jansson`
     endif
     @echo "==== Successfully build Janus Plugin ===="
 
